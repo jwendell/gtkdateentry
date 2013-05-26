@@ -277,7 +277,7 @@ gtk_date_entry_class_init (GtkDateEntryClass *klass)
 static void
 gtk_date_entry_position_popup (GtkDateEntry *date_entry)
 {
-  gint x, y, bwidth, bheight;
+  gint x, y;
   GtkRequisition req;
   GtkAllocation allocation;
   GtkDateEntryPrivate *priv = date_entry->priv;
@@ -577,20 +577,6 @@ gtk_date_entry_init (GtkDateEntry *date_entry)
                     "day-selected-double-click",
                     G_CALLBACK (gtk_date_entry_calendar_day_selected_double),
                     date_entry);
-}
-
-static void
-gtk_dateentry_hide_popdown_window (GtkDateEntry *date_entry)
-{
-  GtkDateEntryPrivate *priv = date_entry->priv;
-
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(priv->button), FALSE);
-
-  gtk_grab_remove (priv->popwin);
-  gdk_device_ungrab (gdk_device_manager_get_client_pointer (gdk_display_get_device_manager (gdk_display_get_default ())),
-                     GDK_CURRENT_TIME);
-
-  gtk_widget_hide (priv->popwin);
 }
 
 GtkWidget *
